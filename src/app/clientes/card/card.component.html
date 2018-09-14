@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="card col-4" *ngFor="let ficha of fichas">
+    <img class="card-img-top" [src]="ficha.picture" [alt]="ficha.about">
+    <div class="card-body">
+      <h5 class="card-title">{{ficha.company}}</h5>
+      <p class="card-text">{{ficha.about}}</p>
+      <a href="#" class="btn btn-primary">View</a>
+    </div>
+  </div>
+</div>

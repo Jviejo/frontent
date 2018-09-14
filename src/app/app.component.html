@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row my-3">
+    <button *ngIf="mode=='card'" (click)="this.mode = 'table'" type="button" name="" id="" class="col-3 btn btn-primary btn-lg btn-block">Table</button>
+    <button *ngIf="mode=='table'" (click)="this.mode = 'card'" type="button" name="" id="" class="col-3 btn btn-primary btn-lg btn-block">Card</button>
+  </div>
+
+  <app-card [fichas]="fichas" *ngIf="mode=='card'"></app-card>
+  <app-table [fichas]="fichas" *ngIf="mode=='table'"></app-table>
+  <div class="row">
+    <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block" (click)="setIdioma('es')">Español</button>
+    <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block" (click)="setIdioma('va')">Valenciano</button>
+  </div>
+  <p appI18n id="id1" >Código</p>
+  <p appI18n id="id2" >Nombre</p>
+  <p>importe {{123 | importe}}</p>
+</div>
