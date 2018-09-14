@@ -12,11 +12,11 @@ export class AppComponent {
   fichas = [];
   mode = 'table';
   title = 'front-end';
- 
+
   setIdioma(idioma) {
-      this._servicio.idioma = idioma;
+    this._servicio.idioma = idioma;
   }
-  constructor( private _servicio: ServicioService) {
+  constructor(private _servicio: ServicioService) {
     this.fichas = [
       {
         "_id": "5b98c7a937ce4ea9dc625f84",
@@ -130,6 +130,16 @@ export class AppComponent {
         "latitude": 5.435818,
         "longitude": 129.187857
       }
-    ]
+    ];
+    this._servicio.getDatos().subscribe(i => {
+      console.log(i);
+    }, (err) => {
+      console.log('error', err.message);
+    });
+    const datos = this._servicio.getDatosSerie().then(res => {
+      console.log('after ', res);
+    }).catch(error => {
+      console.log('se ha producido el error', error.message);
+    });
   }
 }

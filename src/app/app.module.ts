@@ -5,9 +5,10 @@ import { AppComponent } from './app.component';
 import { CardComponent } from './clientes/card/card.component';
 import { TableComponent } from './clientes/table/table.component';
 import { I18nDirective } from './directive/i18n.directive';
-import { HttpClientModule, HttpInterceptor } from '@angular/common/http';
+import { HttpClientModule, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ServicioService } from './servicio.service';
 import { ImportePipe } from './importe.pipe';
+import { InterceptorService } from './interceptor.service';
 
 
 @NgModule({
@@ -24,6 +25,11 @@ import { ImportePipe } from './importe.pipe';
     HttpClientModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true
+  },
     {
       provide: APP_INITIALIZER,
       useFactory: (servicio: ServicioService) => function () {
