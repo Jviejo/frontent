@@ -1,4 +1,4 @@
-app: citaprevia
+app: frontend
 company: nextagilesoft
 
 config: {}
@@ -9,6 +9,7 @@ handlers:
   ui:
     file: Dockerfile
     url: /
+    liveness: /
 
 environments:
   - name: prod
