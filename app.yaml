@@ -14,7 +14,7 @@ handlers:
 environments:
   - name: prod
     domain: frontend-ng.nextagilesoft.com
-    repository: https://gitlab.nextagilesoft.com/jviejo/frontend.git#master
+    repository: git@gitlab-ssh.nextagilesoft.com:jviejo/frontend.git#master
     type: Kubernetes
     cluster: animal
     config: {}
