@@ -1,0 +1,20 @@
+app: citaprevia
+company: nextagilesoft
+
+config: {}
+
+dependencies: {}
+
+handlers:
+  ui:
+    file: Dockerfile
+    url: /
+
+environments:
+  - name: prod
+    domain: frontend-ng.nextagilesoft.com
+    repository: https://gitlab.nextagilesoft.com/jviejo/frontend.git#master
+    type: Kubernetes
+    cluster: animal
+    config: {}
+    env_variables: []

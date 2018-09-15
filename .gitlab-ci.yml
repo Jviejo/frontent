@@ -1,0 +1,13 @@
+stages:
+  - deploy
+
+variables:
+  IMAGE_CLI: docker.nextagilesoft.com/saas2/cli:1.0
+
+deploy-app:
+  tags:
+    - bare
+  stage: deploy
+  script:
+    - docker pull ${IMAGE_CLI}
+    - docker run -v `pwd`/app.yaml:/app.yaml --rm ${IMAGE_CLI} deploy --env=prod --app=/app.yaml
