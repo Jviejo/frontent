@@ -35,7 +35,7 @@ export class AppComponent {
     this._servicio.idioma = idioma
   }
 
-  @HostListener("document:click", ["$event"])
+  @HostListener("document:keyup", ["$event"])
   clickout($event) {
     this.eventos$.next($event)
     console.log("click", $event)
@@ -182,11 +182,15 @@ export class AppComponent {
       fromEvent(document, "click"),
       fromEvent(document, "keyup"),
     ).pipe(
-      map(({ type, x, y }: any) => {
+      map(({ type, x, y, code, altKey, ctrlKey, shiftKey }: any) => {
         return {
           type,
           x,
           y,
+          code,
+          altKey,
+          ctrlKey,
+          shiftKey,
         }
       }),
       catchError(error => of(error)),
@@ -196,7 +200,7 @@ export class AppComponent {
       }, []),
     )
 
-    const first = interval(500)
+    const first = interval(15000)
     const first2 = interval(2500)
 
     const second2 = merge(first, first2)
