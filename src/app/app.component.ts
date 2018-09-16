@@ -13,9 +13,17 @@ import {
   merge,
   interval,
 } from "rxjs"
-import { map, toArray, tap, scan, catchError, mapTo } from "rxjs/operators"
+import {
+  map,
+  take,
+  toArray,
+  tap,
+  scan,
+  catchError,
+  mapTo,
+} from "rxjs/operators"
 import { TableComponent } from "./clientes/table/table.component"
-import { HttpEventType } from "@angular/common/http";
+import { HttpEventType } from "@angular/common/http"
 
 @Component({
   selector: "app-root",
@@ -24,7 +32,6 @@ import { HttpEventType } from "@angular/common/http";
   providers: [Title],
 })
 export class AppComponent {
-  
   fichas = []
   mode = "table"
   title = "front-end"
@@ -33,8 +40,10 @@ export class AppComponent {
   eventos$: Subject<any> = new Subject()
   sub$: Observable<any[]>
   timer$: Observable<any>
-  http$: any;
-  http2$: any;
+  http$: any
+  http2$: any
+  intervalo$: Observable<{}[]>
+  reloj$: Observable<Date>
   setIdioma(idioma) {
     this._servicio.idioma = idioma
   }
@@ -217,37 +226,39 @@ export class AppComponent {
       }, []),
     )
     this.sub$ = this.eventos$.pipe(toArray())
+    this.intervalo$ = interval(1000).pipe(
+      take(19),
+      toArray(),
+    )
+    this.reloj$ = this._servicio.reloj()
+    this.http2$ = this._servicio.getHttp2().subscribe(response => {
+      console.log("body", response.body)
+      console.log("keys cabeceras", response.headers.keys())
 
-    this.http2$ = this._servicio.getHttp2().subscribe(response=>{
-      console.log('body', response.body);
-      console.log('keys cabeceras', response.headers.keys());
-        
-      console.log('X-CUSTOM', response.headers.get('X-CUSTOM'));
-      console.log('X-Powered-By', response.headers.get('X-Powered-By'));
-      console.log('Warning', response.headers.get('Warning'));
-  });
+      console.log("X-CUSTOM", response.headers.get("X-CUSTOM"))
+      console.log("X-Powered-By", response.headers.get("X-Powered-By"))
+      console.log("Warning", response.headers.get("Warning"))
+    })
 
-    this.http$ = this._servicio.getHttp().subscribe(event=>{
+    this.http$ = this._servicio.getHttp().subscribe(event => {
       if (event.type === HttpEventType.Sent) {
         console.log("sent")
       }
       if (event.type === HttpEventType.DownloadProgress) {
-        console.log(event.loaded); //downloaded bytes
-        console.log(event.total); //total bytes to download
+        console.log(event.loaded) //downloaded bytes
+        console.log(event.total) //total bytes to download
       }
       if (event.type === HttpEventType.UploadProgress) {
-        console.log(event.loaded); //uploaded bytes
-        console.log(event.total); //total bytes to upload
+        console.log(event.loaded) //uploaded bytes
+        console.log(event.total) //total bytes to upload
       }
       if (event.type === HttpEventType.Response) {
-        
-        console.log(event.body);
-        console.log('keys cabeceras', event.headers.keys());
-        
-        console.log('X-CUSTOM', event.headers.get('X-CUSTOM'));
-        console.log('X-Powered-By', event.headers.get('X-Powered-By'));
-        console.log('Warning', event.headers.get('Warning'));
-        
+        console.log(event.body)
+        console.log("keys cabeceras", event.headers.keys())
+
+        console.log("X-CUSTOM", event.headers.get("X-CUSTOM"))
+        console.log("X-Powered-By", event.headers.get("X-Powered-By"))
+        console.log("Warning", event.headers.get("Warning"))
       }
     })
 

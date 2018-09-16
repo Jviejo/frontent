@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core"
 import { Subject, Observable, fromEvent } from "../../node_modules/rxjs"
 import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http"
-import { forkJoin } from "rxjs"
-import { toArray } from "rxjs/operators"
+import { forkJoin, interval } from "rxjs"
+import { toArray, map, tap } from "rxjs/operators"
 
 @Injectable({
   providedIn: "root",
@@ -49,8 +49,9 @@ export class ServicioService {
     const headers = new HttpHeaders().set("id", "sesion-id")
     const arrLLamadas = [
       this._http.get("http://localhost:3002/10000", {
-        responseType:"text", headers,
-      })
+        responseType: "text",
+        headers,
+      }),
     ]
     return forkJoin(arrLLamadas)
   }
@@ -69,9 +70,19 @@ export class ServicioService {
     return fromEvent(document, "click")
   }
   getHttp() {
-    return this._http.get("http://localhost:3002/1000", {responseType:"text", observe: 'events', reportProgress: true})
+    return this._http.get("http://localhost:3002/1000", {
+      responseType: "text",
+      observe: "events",
+      reportProgress: true,
+    })
   }
   getHttp2() {
-    return this._http.get("http://localhost:3002/1000", {responseType:"text", observe: 'response'})
+    return this._http.get("http://localhost:3002/1000", {
+      responseType: "text",
+      observe: "response",
+    })
+  }
+  reloj() {
+    return interval(1000).pipe(map(i => new Date()))
   }
 }

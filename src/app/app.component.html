@@ -6,6 +6,7 @@
 
   <app-card [fichas]="fichas" *ngIf="mode=='card'"></app-card>
   <app-table [fichas]="fichas" *ngIf="mode=='table'"></app-table> -->
+  <h2>reloj {{reloj$ | async | date:'h:mm:ss a z'}}</h2>
   <div class="row">
     <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block" (click)="setIdioma('es')">Español</button>
     <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block" (click)="setIdioma('va')">Valenciano</button>
@@ -23,5 +24,9 @@
   <h2>Timer</h2>
   <ul>
     <li *ngFor="let o of timer$ | async ">{{o | json}}</li>
+  </ul>
+  <h2>interval</h2>
+  <ul>
+    <li *ngFor="let o of intervalo$ | async ">{{o | json}}</li>
   </ul>
 </div>
