@@ -54,7 +54,7 @@ export class AppComponent {
     console.log("click", $event)
   }
 
-  constructor(private _servicio: ServicioService) {
+  constructor(public _servicio: ServicioService) {
     this.fichas = [
       {
         _id: "5b98c7a937ce4ea9dc625f84",
@@ -262,6 +262,9 @@ export class AppComponent {
       }
     })
 
+    // this._servicio.uploadData().subscribe(i=>{
+    //   console.log("upload", i)
+    // })
     const datos = this._servicio
       .getDatosSerie()
       .then(res => {
@@ -270,5 +273,6 @@ export class AppComponent {
       .catch(error => {
         console.log("se ha producido el error", error.message)
       })
+
   }
 }

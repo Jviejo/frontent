@@ -7,6 +7,12 @@
   <app-card [fichas]="fichas" *ngIf="mode=='card'"></app-card>
   <app-table [fichas]="fichas" *ngIf="mode=='table'"></app-table> -->
   <h2>reloj {{reloj$ | async | date:'h:mm:ss a z'}}</h2>
+  <form>
+      <p>single</p>
+      <input type="file" id="f1"  accept="image/*"  (change)="_servicio.uploadData($event)">
+      <p>multiple</p>
+      <input type="file" id="f1" multiple accept="image/*"  (change)="_servicio.uploadDataMultiple($event)">
+  </form>
   <div class="row">
     <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block" (click)="setIdioma('es')">Español</button>
     <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block" (click)="setIdioma('va')">Valenciano</button>

@@ -8,7 +8,7 @@ import { toArray, map, tap } from "rxjs/operators"
   providedIn: "root",
 })
 export class ServicioService {
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient) { }
   private _idioma = "es"
   get idioma(): string {
     return this._idioma
@@ -85,4 +85,30 @@ export class ServicioService {
   reloj() {
     return interval(1000).pipe(map(i => new Date()))
   }
+
+  uploadData($event) {
+    // tomamos el primer fichero    
+    var file = $event.target.files[0];
+    // creamos el formdata
+    var formData = new FormData();
+    //var aFileParts = ['<a id="a"><b id="b">hey!</b></a>']; // an array consisting of a single DOMString
+    //var oMyBlob = new Blob(aFileParts, {type : 'text/html'}); // the blob
+    formData.append("file", file, file.name);
+    this._http.post("http://localhost:3002/upload", formData)._subscribe(i => {
+      console.log(i);
+    })
+  }
+  uploadDataMultiple($event) {
+    // tomamos el primer fichero    
+    var formData = new FormData();
+    const files = $event.target.files
+    for (let index = 0; index < files.length; index++) {
+      const file = files.item(index)
+      formData.append("file[]", file, file.name);  
+    }
+    this._http.post("http://localhost:3002/uploadMultiple", formData)._subscribe(i => {
+      console.log(i);
+    })
+  }
+
 }
