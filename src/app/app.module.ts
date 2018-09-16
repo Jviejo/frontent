@@ -17,11 +17,11 @@ import { InterceptorService } from "./interceptor.service"
   declarations: [AppComponent, CardComponent, TableComponent, I18nDirective],
   imports: [BrowserModule, NgbModule, HttpClientModule],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: InterceptorService,
-      multi: true,
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: InterceptorService,
+    //   multi: true,
+    // },
     {
       provide: APP_INITIALIZER,
       useFactory: (servicio: ServicioService) =>

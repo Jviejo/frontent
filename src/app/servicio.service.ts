@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core"
 import { Subject, Observable, fromEvent } from "../../node_modules/rxjs"
-import { HttpClient, HttpHeaders } from "@angular/common/http"
+import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http"
 import { forkJoin } from "rxjs"
 import { toArray } from "rxjs/operators"
 
@@ -48,12 +48,9 @@ export class ServicioService {
   getDatos() {
     const headers = new HttpHeaders().set("id", "sesion-id")
     const arrLLamadas = [
-      this._http.get("http://192.168.99.1:8081/src/assets/datos.json", {
-        headers,
-      }),
-      this._http.get("http://192.168.99.1:8081/src/assets/datos.1.json", {
-        headers,
-      }),
+      this._http.get("http://localhost:3002/10000", {
+        responseType:"text", headers,
+      })
     ]
     return forkJoin(arrLLamadas)
   }
@@ -70,5 +67,11 @@ export class ServicioService {
   // rxjs
   getFromEvent() {
     return fromEvent(document, "click")
+  }
+  getHttp() {
+    return this._http.get("http://localhost:3002/1000", {responseType:"text", observe: 'events', reportProgress: true})
+  }
+  getHttp2() {
+    return this._http.get("http://localhost:3002/1000", {responseType:"text", observe: 'response'})
   }
 }
