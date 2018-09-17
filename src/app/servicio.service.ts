@@ -104,7 +104,7 @@ export class ServicioService {
     const files = $event.target.files
     for (let index = 0; index < files.length; index++) {
       const file = files.item(index)
-      formData.append("file[]", file, file.name);  
+      formData.append("file", file, file.name);  
     }
     this._http.post("http://localhost:3002/uploadMultiple", formData)._subscribe(i => {
       console.log(i);
