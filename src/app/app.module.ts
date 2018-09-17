@@ -11,10 +11,20 @@ import {
   HTTP_INTERCEPTORS,
 } from "@angular/common/http"
 import { ServicioService } from "./servicio.service"
-import { InterceptorService } from "./interceptor.service"
+import { InterceptorService } from "./interceptor.service";
+import { Ejemplo1Component } from './ejemplo1/ejemplo1.component';
+import { RxComponent } from './rx/rx.component';
+import { DirectivaComponent } from './directiva/directiva.component';
+import { HttpComponent } from './http/http.component';
+import { ErroresComponent } from './errores/errores.component';
+import { ServicioComponent } from './servicio/servicio.component'
 
 @NgModule({
-  declarations: [AppComponent, CardComponent, TableComponent, I18nDirective],
+  declarations: [AppComponent, 
+    CardComponent, 
+    TableComponent, 
+    I18nDirective, 
+    Ejemplo1Component, RxComponent, DirectivaComponent, HttpComponent, ErroresComponent, ServicioComponent],
   imports: [BrowserModule, NgbModule, HttpClientModule],
   providers: [
     {

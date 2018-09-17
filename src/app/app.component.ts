@@ -32,6 +32,7 @@ import { HttpEventType } from "@angular/common/http"
   providers: [Title],
 })
 export class AppComponent {
+  opcion =""
   fichas = []
   mode = "table"
   title = "front-end"
@@ -191,27 +192,6 @@ export class AppComponent {
     //   setInterval(() => observer.next(new Date().toString()), 1000)
     // })
     this.t = from([1, 2, 3, 4, 5, 6, 6]).pipe(toArray())
-    this.t1$ = merge(
-      fromEvent(document, "click"),
-      fromEvent(document, "keyup"),
-    ).pipe(
-      map(({ type, x, y, code, altKey, ctrlKey, shiftKey }: any) => {
-        return {
-          type,
-          x,
-          y,
-          code,
-          altKey,
-          ctrlKey,
-          shiftKey,
-        }
-      }),
-      catchError(error => of(error)),
-      scan((acc: any, curr: any) => {
-        acc.push(curr)
-        return acc
-      }, []),
-    )
 
     const first = interval(15000)
     const first2 = interval(2500)
@@ -230,7 +210,7 @@ export class AppComponent {
       take(19),
       toArray(),
     )
-    this.reloj$ = this._servicio.reloj()
+
     this.http2$ = this._servicio.getHttp2().subscribe(response => {
       console.log("body", response.body)
       console.log("keys cabeceras", response.headers.keys())

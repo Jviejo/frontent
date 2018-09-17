@@ -1,12 +1,40 @@
 <div class="container">
-  <!-- <div class="row my-3">
+  <div class="row">
+    <div class="col">
+      <h2>Alicante Front End</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <h3>Sesión 1</h3>
+      <ul class="list-group" style="cursor:pointer">
+        <li class="list-group-item" (click)="opcion = 'tabla'">Tabla</li>
+        <li class="list-group-item" (click)="opcion = 'directiva'">Directiva</li>
+        <li class="list-group-item" (click)="opcion = 'servicio'">Servicio</li>
+        <li class="list-group-item" (click)="opcion = 'rx'">RX</li>
+        <li class="list-group-item" (click)="opcion = 'http'">Http</li>
+        <li class="list-group-item" (click)="opcion = 'errores'">Errores</li>
+      </ul>
+    </div>
+    <div class="col">
+
+
+
+      <app-ejemplo1 *ngIf="opcion =='tabla'"></app-ejemplo1>
+      <app-servicio *ngIf="opcion =='servicio'"></app-servicio>
+      <app-directiva *ngIf="opcion =='directiva'"></app-directiva>
+      <app-rx *ngIf="opcion =='rx'"></app-rx>
+      <app-http *ngIf="opcion =='http'"></app-http>
+      <app-errores *ngIf="opcion =='errores'"></app-errores>
+
+      <!-- <div class="row my-3">
     <button *ngIf="mode=='card'" (click)="this.mode = 'table'" type="button" name="" id="" class="col-3 btn btn-primary btn-lg btn-block">Table</button>
     <button *ngIf="mode=='table'" (click)="this.mode = 'card'" type="button" name="" id="" class="col-3 btn btn-primary btn-lg btn-block">Card</button>
   </div>
 
   <app-card [fichas]="fichas" *ngIf="mode=='card'"></app-card>
   <app-table [fichas]="fichas" *ngIf="mode=='table'"></app-table> -->
-  <h2>reloj {{reloj$ | async | date:'h:mm:ss a z'}}</h2>
+      <!-- <h2>reloj {{reloj$ | async | date:'h:mm:ss a z'}}</h2>
   <form>
       <p>single</p>
       <input type="file" id="f1"  accept="image/*"  (change)="_servicio.uploadData($event)">
@@ -23,10 +51,6 @@
   <ul>
     <li *ngFor="let o of t | async">{{o}}</li>
   </ul>
-  <h2>Lista de eventos</h2>
-  <ul>
-    <li *ngFor="let o of t1$ | async ">{{o | json}}</li>
-  </ul>
   <h2>Timer</h2>
   <ul>
     <li *ngFor="let o of timer$ | async ">{{o | json}}</li>
@@ -34,5 +58,7 @@
   <h2>interval</h2>
   <ul>
     <li *ngFor="let o of intervalo$ | async ">{{o | json}}</li>
-  </ul>
+  </ul> -->
+    </div>
+  </div>
 </div>

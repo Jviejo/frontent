@@ -1,0 +1,39 @@
+<div class="row">
+  <button *ngFor="let p of getPaginas()" type="button" class="col btn btn-primary" (click)="setPagina(p)">
+    {{p}}
+  </button>
+</div>
+<div class="row">
+  <h3>Pagina {{pagina}}</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Codigo</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let objeto of verPagina(pagina)">
+        <tr>
+          <td>{{objeto.id}}</td>
+          <td>{{objeto.nombre}}</td>
+          <td>{{objeto.precio | currency:'€'}}</td>
+          <td><button type="button" class="btn btn-primary" (click)="verDetalle(objeto)">
+              <span *ngIf="!objeto.ver">Ver</span>
+              <span *ngIf="objeto.ver">Quitar</span>
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="objeto.ver == true">
+            <td colspan="4">
+              <h4>Aqui se pone el detalle</h4>
+            </td>
+        </tr>
+      </ng-container>
+
+    </tbody>
+  </table>
+
+</div>

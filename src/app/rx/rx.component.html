@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col">
+    <h4 class="lead">{{reloj$ | async | date:'h:mm:ss a z'}}</h4>
+  </div>
+
+</div>
+<div class="row">
+  <div class="col">
+    <h4 class="lead">Lista de eventos</h4>
+    <ul>
+      <li *ngFor="let o of t1$ | async ">{{o | json}}</li>
+    </ul>
+  </div>
+</div>
