@@ -94,7 +94,7 @@ export class ServicioService {
     //var aFileParts = ['<a id="a"><b id="b">hey!</b></a>']; // an array consisting of a single DOMString
     //var oMyBlob = new Blob(aFileParts, {type : 'text/html'}); // the blob
     formData.append("file", file, file.name);
-    this._http.post("http://localhost:3002/upload", formData)._subscribe(i => {
+    this._http.post("http://localhost:3002/upload", formData).subscribe((i: any) => {
       console.log(i);
     })
   }
@@ -106,7 +106,7 @@ export class ServicioService {
       const file = files.item(index)
       formData.append("file", file, file.name);  
     }
-    this._http.post("http://localhost:3002/uploadMultiple", formData)._subscribe(i => {
+    this._http.post("http://localhost:3002/uploadMultiple", formData).subscribe((i:any) => {
       console.log(i);
     })
   }

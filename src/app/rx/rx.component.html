@@ -2,7 +2,6 @@
   <div class="col">
     <h4 class="lead">{{reloj$ | async | date:'h:mm:ss a z'}}</h4>
   </div>
-
 </div>
 <div class="row">
   <div class="col">
@@ -12,3 +11,36 @@
     </ul>
   </div>
 </div>
+<div class="row">
+  <div class="col">
+    <h4 class="lead">Prueba zip</h4>
+    <ul>
+      <li *ngFor="let o of slow$ | async ">{{o | json}}</li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <h4 class="lead">Prueba promise</h4>
+    <ul>
+      <li *ngFor="let o of promesas$ | async ">{{o | json}}</li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col">
+    <h4 class="lead">Observador</h4>
+    <span *ngFor="let o of obs$ | async ">{{o | json}}</span>
+  </div>
+</div>
+
+
+<div class="row">
+    <div class="col">
+      <h4 class="lead">Reintentos</h4>
+      <span *ngFor="let o of intentos$ | async ">{{o | json}}</span>
+    </div>
+  </div>

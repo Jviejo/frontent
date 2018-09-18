@@ -32,7 +32,7 @@ import { HttpEventType } from "@angular/common/http"
   providers: [Title],
 })
 export class AppComponent {
-  opcion =""
+  opcion ="http"
   fichas = []
   mode = "table"
   title = "front-end"
@@ -91,7 +91,7 @@ export class AppComponent {
         latitude: -37.97531,
         longitude: 61.404636,
       },
-      {
+      { 
         _id: "5b98c7a918c6b5a686884be1",
         index: 2,
         guid: "63be84a2-5c3d-4d26-8f4d-54a71a288176",

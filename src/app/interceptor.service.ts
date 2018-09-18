@@ -29,8 +29,8 @@ export class InterceptorService implements HttpInterceptor {
       tap(i => {
         console.log(i)
 
-        const ms = new Date() - inicio
-        console.log("fin", ms, i.type)
+        //const ms = (new Date()) - inicio
+        console.log("fin",  i.type)
       }),
     )
   }
