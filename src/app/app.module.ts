@@ -17,14 +17,16 @@ import { RxComponent } from './rx/rx.component';
 import { DirectivaComponent } from './directiva/directiva.component';
 import { HttpComponent } from './http/http.component';
 import { ErroresComponent } from './errores/errores.component';
-import { ServicioComponent } from './servicio/servicio.component'
+import { ServicioComponent } from './servicio/servicio.component';
+import { HttpbasicoComponent } from './httpbasico/httpbasico.component';
+import { InitComponent } from './init/init.component'
 
 @NgModule({
   declarations: [AppComponent, 
     CardComponent, 
     TableComponent, 
     I18nDirective, 
-    Ejemplo1Component, RxComponent, DirectivaComponent, HttpComponent, ErroresComponent, ServicioComponent],
+    Ejemplo1Component, RxComponent, DirectivaComponent, HttpComponent, ErroresComponent, ServicioComponent, HttpbasicoComponent, InitComponent],
   imports: [BrowserModule, NgbModule, HttpClientModule],
   providers: [
     {

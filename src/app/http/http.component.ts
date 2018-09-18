@@ -18,6 +18,7 @@ export class HttpComponent implements OnInit {
   base64data: any;
   imagenes = [];
   imagenes$: any;
+  ficheros$: Observable<Object>;
   constructor(private _http: HttpClient, private _sanitize: DomSanitizer) { }
 
   loadData(filename, tipo) {
@@ -33,7 +34,7 @@ export class HttpComponent implements OnInit {
       this.datosFichero = datos;
     })
   }
-
+  
   uploadContent() {
     var formData = new FormData();
     var parte = ['<a id="a"><b id="b">hey!</b></a>']; // an array consisting of a single DOMString
@@ -41,7 +42,6 @@ export class HttpComponent implements OnInit {
     formData.append("file", myBlob, "contenido.html");
     this._http.post(`${this.apiUrl}/upload`, formData).subscribe((i: any) => {
       console.log(i);
-
       this.contenido = i;
     })
   }
@@ -85,7 +85,11 @@ export class HttpComponent implements OnInit {
       })
     })
   }
+  getFicheros() {
+    this.ficheros$ =  this._http.get(`${this.apiUrl}/ficheros`)
+  }
   ngOnInit() {
+
   }
 
 }

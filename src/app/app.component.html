@@ -12,7 +12,9 @@
         <li class="list-group-item" (click)="opcion = 'directiva'">Directiva</li>
         <li class="list-group-item" (click)="opcion = 'servicio'">Servicio</li>
         <li class="list-group-item" (click)="opcion = 'rx'">RX</li>
-        <li class="list-group-item" (click)="opcion = 'http'">Http</li>
+        <li class="list-group-item" (click)="opcion = 'httpbasico'">Http</li>
+        <li class="list-group-item" (click)="opcion = 'http'">Http upload</li>
+        <li class="list-group-item" (click)="opcion = 'init'">Inicio Aplicacion</li>
         <li class="list-group-item" (click)="opcion = 'errores'">Errores</li>
       </ul>
     </div>
@@ -22,7 +24,9 @@
       <app-directiva *ngIf="opcion =='directiva'"></app-directiva>
       <app-rx *ngIf="opcion =='rx'"></app-rx>
       <app-http *ngIf="opcion =='http'"></app-http>
+      <app-httpbasico *ngIf="opcion =='httpbasico'"></app-httpbasico>
       <app-errores *ngIf="opcion =='errores'"></app-errores>
+      <app-init *ngIf="opcion =='init'"></app-init>
 
       <!-- <div class="row my-3">
     <button *ngIf="mode=='card'" (click)="this.mode = 'table'" type="button" name="" id="" class="col-3 btn btn-primary btn-lg btn-block">Table</button>

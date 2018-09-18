@@ -1,30 +1,44 @@
 <div class="row">
     <div class="col">
-       <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block" (click)="uploadContent()">Subir contenidos</button>
-       <pre  *ngIf="contenido!=null">{{contenido | json}}</pre>
-        <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block" (click)="loadData(contenido.file.filename, 'text')">Bajar  contenido</button>
-        <pre  *ngIf="datosFichero!=null">
+        <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block" (click)="uploadContent()">Subir
+            contenidos</button>
+        <pre *ngIf="contenido!=null">{{contenido | json}}</pre>
+        <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block" (click)="loadData(contenido.file.filename, 'text')">Bajar
+            contenido</button>
+        <pre *ngIf="datosFichero!=null">
           {{datosFichero}}
         </pre>
     </div>
-  </div>
-  
+</div>
+
 
 <div class="row">
-  <div class="col">
-      <form>
-          <p>single</p>
-          <input type="file" id="f1"  accept="image/*"  (change)="uploadData($event)">
-          <pre *ngIf="filename!=null">{{filename | json}}</pre>
-          <p>multiple</p>
-          <input type="file" id="f1" multiple accept="image/*"  (change)="uploadDataMultiple($event)">
-          <pre *ngIf="files!=null">{{files | json}}</pre>
-      </form>
-  </div>
+    <div class="col">
+        <form>
+            <p>single</p>
+            <input type="file" id="f1" accept="image/*" (change)="uploadData($event)">
+            <pre *ngIf="filename!=null">{{filename | json}}</pre>
+            <p>multiple</p>
+            <input type="file" id="f1" multiple accept="image/*" (change)="uploadDataMultiple($event)">
+            <pre *ngIf="files!=null">{{files | json}}</pre>
+        </form>
+    </div>
 </div>
-<button type="button" name="" id="" class="btn btn-primary btn-lg btn-block" (click)="loadData('file-1537266142317.png', 'blob')">Bajar  imagen</button>
-<!-- <img *ngIf="base64data" [src]="base64data" alt="Red dot" /> -->
+<button type="button" name="" id="" class="btn btn-primary btn-lg btn-block" (click)="loadData('file-1537266142317.png', 'blob')">Bajar
+    imagen</button>
+<img *ngIf="base64data" [src]="base64data" alt="Red dot" />
 
 <ng-container *ngFor="let o of imagenes">
-    <img width=156  [src]="o" alt="Red dot" />
+    <img width=156 [src]="o" alt="Red dot" />
 </ng-container>
+<button type="button" name="" id="" class="btn btn-primary btn-lg btn-block" 
+(click)="getFicheros()">
+        ver Ficheros</button>
+<ul>
+    <li *ngFor="let o of ficheros$ | async">
+            {{o}}
+    </li>
+</ul>
+<!-- <div style="position:absolute;left:0;top:0; width:100%; height: 100%;background: green">
+        aaa
+</div> -->
