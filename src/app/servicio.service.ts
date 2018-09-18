@@ -3,13 +3,15 @@ import { Subject, Observable, fromEvent } from "../../node_modules/rxjs"
 import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http"
 import { forkJoin, interval } from "rxjs"
 import { toArray, map, tap } from "rxjs/operators"
+import { environment } from "../environments/environment"
 
 @Injectable({
   providedIn: "root",
 })
 export class ServicioService {
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) {}
   private _idioma = "es"
+  private urlApi = environment.api
   get idioma(): string {
     return this._idioma
   }
@@ -48,7 +50,7 @@ export class ServicioService {
   getDatos() {
     const headers = new HttpHeaders().set("id", "sesion-id")
     const arrLLamadas = [
-      this._http.get("http://localhost:3002/10000", {
+      this._http.get(`${this.urlApi}/10000`, {
         responseType: "text",
         headers,
       }),
@@ -70,14 +72,14 @@ export class ServicioService {
     return fromEvent(document, "click")
   }
   getHttp() {
-    return this._http.get("http://localhost:3002/1000", {
+    return this._http.get(`${this.urlApi}/1000`, {
       responseType: "text",
       observe: "events",
       reportProgress: true,
     })
   }
   getHttp2() {
-    return this._http.get("http://localhost:3002/1000", {
+    return this._http.get(`${this.urlApi}/1000`, {
       responseType: "text",
       observe: "response",
     })
@@ -87,28 +89,29 @@ export class ServicioService {
   }
 
   uploadData($event) {
-    // tomamos el primer fichero    
-    var file = $event.target.files[0];
+    // tomamos el primer fichero
+    var file = $event.target.files[0]
     // creamos el formdata
-    var formData = new FormData();
+    var formData = new FormData()
     //var aFileParts = ['<a id="a"><b id="b">hey!</b></a>']; // an array consisting of a single DOMString
     //var oMyBlob = new Blob(aFileParts, {type : 'text/html'}); // the blob
-    formData.append("file", file, file.name);
-    this._http.post("http://localhost:3002/upload", formData).subscribe((i: any) => {
-      console.log(i);
+    formData.append("file", file, file.name)
+    this._http.post(`${this.urlApi}/upload`, formData).subscribe((i: any) => {
+      console.log(i)
     })
   }
   uploadDataMultiple($event) {
-    // tomamos el primer fichero    
-    var formData = new FormData();
+    // tomamos el primer fichero
+    var formData = new FormData()
     const files = $event.target.files
     for (let index = 0; index < files.length; index++) {
       const file = files.item(index)
-      formData.append("file", file, file.name);  
+      formData.append("file", file, file.name)
     }
-    this._http.post("http://localhost:3002/uploadMultiple", formData).subscribe((i:any) => {
-      console.log(i);
-    })
+    this._http
+      .post(`${this.urlApi}/uploadMultiple`, formData)
+      .subscribe((i: any) => {
+        console.log(i)
+      })
   }
-
 }

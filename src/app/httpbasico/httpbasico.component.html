@@ -1,3 +1,20 @@
-<p>
-  httpbasico works!
-</p>
+<div class="row">
+  <button (click)="simple()" type="button" class="mx-1 col-3 btn btn-primary">Simple</button>
+  <button (click)="doble()" type="button" class="col-3 btn btn-primary">Doble</button>
+
+  <table class="table">
+    <tr>
+      <th>pos</th>
+      <th>Company</th>
+      <th>About</th>
+      <th>Age</th>
+    </tr>
+    <tr *ngFor="let ficha of fichas$ | async ; let i = index">
+      <td>{{i}}</td>
+      <td>{{ficha.company}}</td>
+
+      <td>{{ficha.about}}</td>
+      <td>{{ficha.age}}</td>
+    </tr>
+  </table>
+</div>

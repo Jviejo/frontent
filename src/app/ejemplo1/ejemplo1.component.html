@@ -15,21 +15,22 @@
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngFor="let objeto of verPagina(pagina)">
+      <ng-container *ngFor="let objeto of verPagina(pagina, 'precio', -1)">
         <tr>
           <td>{{objeto.id}}</td>
           <td>{{objeto.nombre}}</td>
           <td>{{objeto.precio | currency:'€'}}</td>
-          <td><button type="button" class="btn btn-primary" (click)="verDetalle(objeto)">
+          <td>
+            <button type="button" class="btn btn-primary" (click)="verDetalle(objeto)">
               <span *ngIf="!objeto.ver">Ver</span>
               <span *ngIf="objeto.ver">Quitar</span>
             </button>
           </td>
         </tr>
         <tr *ngIf="objeto.ver == true">
-            <td colspan="4">
-              <h4>Aqui se pone el detalle</h4>
-            </td>
+          <td colspan="4">
+            <h4>Aqui se pone el detalle</h4>
+          </td>
         </tr>
       </ng-container>
 

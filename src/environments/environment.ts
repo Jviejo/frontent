@@ -3,8 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
-};
+  production: false,
+  api: `https://frontend-api.nextagilesoft.com`,
+}
 
 /*
  * In development mode, for easier debugging, you can ignore zone related error
