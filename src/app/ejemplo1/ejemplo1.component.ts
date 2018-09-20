@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core"
 import { CurrencyPipe } from "@angular/common"
 
 @Component({
-  selector: "app-ejemplo1",
+  selector: " ",
   templateUrl: "./ejemplo1.component.html",
   styleUrls: ["./ejemplo1.component.css"],
 })
