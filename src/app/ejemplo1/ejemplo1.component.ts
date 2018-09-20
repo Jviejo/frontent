@@ -2,11 +2,12 @@ import { Component, OnInit } from "@angular/core"
 import { CurrencyPipe } from "@angular/common"
 
 @Component({
-  selector: " ",
+  selector: "app-ejemplo1",
   templateUrl: "./ejemplo1.component.html",
   styleUrls: ["./ejemplo1.component.css"],
 })
 export class Ejemplo1Component implements OnInit {
+  errors = []
   pagina = 1
   objetos = [
     { pag: 5, id: "4", nombre: "JUAN", precio: 3.3 },

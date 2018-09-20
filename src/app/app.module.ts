@@ -1,5 +1,10 @@
 import { BrowserModule, Title } from "@angular/platform-browser"
-import { NgModule, APP_INITIALIZER, APP_BOOTSTRAP_LISTENER } from "@angular/core"
+import {
+  NgModule,
+  APP_INITIALIZER,
+  APP_BOOTSTRAP_LISTENER,
+  ErrorHandler,
+} from "@angular/core"
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap"
 import { AppComponent } from "./app.component"
 import { CardComponent } from "./clientes/card/card.component"
@@ -20,7 +25,8 @@ import { ErroresComponent } from "./errores/errores.component"
 import { ServicioComponent } from "./servicio/servicio.component"
 import { HttpbasicoComponent } from "./httpbasico/httpbasico.component"
 import { environment } from "../environments/environment"
-import { S2Service } from "./s2.service";
+import { S2Service } from "./s2.service"
+import { ErrorsHandler } from "./errors-handler"
 
 @NgModule({
   declarations: [
@@ -38,18 +44,20 @@ import { S2Service } from "./s2.service";
   ],
   imports: [BrowserModule, NgbModule, HttpClientModule],
   providers: [
-    
+    {
+      provide: ErrorHandler,
+      useClass: ErrorsHandler,
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
       multi: true,
     },
-    
+
     {
       provide: APP_BOOTSTRAP_LISTENER,
       useFactory: () =>
         function() {
-          console.log("se ha instanciado un componente")
           return true
         },
       deps: [ServicioService],

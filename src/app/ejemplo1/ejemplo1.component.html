@@ -1,3 +1,8 @@
+<div *ngFor="let p of errors" type="button" class="row alert alert-danger col">
+  {{p}}
+</div>
+
+
 <div class="row">
   <button *ngFor="let p of getPaginas()" type="button" class="col mx-1 btn btn-primary" (click)="setPagina(p)">
     {{p}}

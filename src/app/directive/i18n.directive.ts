@@ -23,15 +23,13 @@ export class I18nDirective implements AfterViewInit {
     private sanitizer: DomSanitizer,
     private _elRef: ElementRef,
     private _servicio: ServicioService,
-  ) {
+  ) {}
+
+  ngAfterViewInit(): void {
     this._subscription = this._servicio.idiomaChange.subscribe(value => {
       const texto = this._servicio.i18n[value].find(i => i.id === this.id).texto
       this._renderer.setProperty(this._elRef.nativeElement, "innerHTML", texto)
-      this._renderer.setProperty(this._elRef.nativeElement, "innerHTML", texto)
     })
-  }
-
-  ngAfterViewInit(): void {
     const texto =
       this._servicio.i18n[this._servicio.idioma] &&
       this._servicio.i18n[this._servicio.idioma].find(i => i.id === this.id)
