@@ -26,7 +26,9 @@ import { ServicioComponent } from "./servicio/servicio.component"
 import { HttpbasicoComponent } from "./httpbasico/httpbasico.component"
 import { environment } from "../environments/environment"
 import { S2Service } from "./s2.service"
-import { ErrorsHandler } from "./errors-handler"
+import { ErrorsHandler } from "./errors-handler";
+import { PadreComponent } from './padre/padre.component';
+import { HijoComponent } from './hijo/hijo.component'
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { ErrorsHandler } from "./errors-handler"
     ErroresComponent,
     ServicioComponent,
     HttpbasicoComponent,
+    PadreComponent,
+    HijoComponent,
   ],
   imports: [BrowserModule, NgbModule, HttpClientModule],
   providers: [

@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col">
+    <h1>Este es el padre</h1>
+    <button class="btn btn-primary" (click)="cambiar()">Cambiar la propiedad</button>
+    <p>Esto viene del hijo {{delHijo|json}}</p>
+    <p>{{propiedad}}</p>
+    <app-hijo [p1]=" propiedad" (salida)="presentarInfoDelHijo($event)"></app-hijo>
+  </div>
+</div>

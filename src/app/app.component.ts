@@ -32,7 +32,7 @@ import { HttpEventType } from "@angular/common/http"
   providers: [Title],
 })
 export class AppComponent {
-  opcion = "servicio"
+  opcion = "padre"
   fichas = []
   mode = "table"
   title = "front-end"
