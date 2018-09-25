@@ -23,7 +23,7 @@
         <li class="list-group-item" (click)="opcion = 'errores'">Errores</li>
       </ul>
     </div>
-    <div class="col">
+    <div class="col-9">
       <app-padre *ngIf="opcion =='padre'"></app-padre>
       <app-ejemplo1 *ngIf="opcion =='tabla'"></app-ejemplo1>
       <app-servicio *ngIf="opcion =='servicio'"></app-servicio>
@@ -38,6 +38,7 @@
     <button *ngIf="mode=='table'" (click)="this.mode = 'card'" type="button" name="" id="" class="col-3 btn btn-primary btn-lg btn-block">Card</button>
   </div>
 -->
+
 
     </div>
   </div>
