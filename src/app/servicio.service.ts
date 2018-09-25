@@ -9,6 +9,7 @@ import { environment } from "../environments/environment"
   providedIn: "root",
 })
 export class ServicioService {
+  public error: any;
   constructor(private _http: HttpClient) {}
   private _idioma = "es"
   private urlApi = environment.api

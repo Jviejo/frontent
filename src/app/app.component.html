@@ -4,6 +4,11 @@
       <h2>Alicante Front End</h2>
     </div>
   </div>
+  <div *ngIf="_servicio.error" >
+    <div class="col" class="row alert alert-danger alert-dismissible fade show" role="alert">
+      {{_servicio.error}}
+    </div>
+  </div>
   <div class="row">
     <div class="col-3">
       <h3>Sesión 1</h3>
