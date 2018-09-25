@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: `https://frontend-api.nextagilesoft.com`,
+  api: `http://localhost:3333`,
 }
 
 /*

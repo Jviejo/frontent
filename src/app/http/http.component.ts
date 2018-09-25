@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core"
 import { HttpClient } from "@angular/common/http"
 import { DomSanitizer } from "@angular/platform-browser"
 import { forkJoin, merge, from, Observable } from "rxjs"
-import { toArray } from "rxjs/operators"
+import { toArray, map } from "rxjs/operators"
 import { environment } from "../../environments/environment"
 @Component({
   selector: "app-http",
@@ -18,10 +18,11 @@ export class HttpComponent implements OnInit {
   base64data: any
   imagenes = []
   imagenes$: any
-  ficheros$: Observable<Object>
-  constructor(private _http: HttpClient, private _sanitize: DomSanitizer) {}
+  ficheros = [];
+  constructor(private _http: HttpClient, private _sanitize: DomSanitizer) { }
 
-  loadData(filename, tipo) {
+  loadData(file, tipo) {
+    const filename = file.filename;
     this._http
       .get(`${this.apiUrl}/loadData/${filename}`, { responseType: tipo })
       .subscribe((datos: any) => {
@@ -30,7 +31,7 @@ export class HttpComponent implements OnInit {
           var reader = new FileReader()
           reader.readAsDataURL(datos)
           reader.onloadend = () => {
-            this.base64data = this._sanitize.bypassSecurityTrustUrl(
+            file.img = this._sanitize.bypassSecurityTrustUrl(
               reader.result,
             )
           }
@@ -96,7 +97,10 @@ export class HttpComponent implements OnInit {
       })
   }
   getFicheros() {
-    this.ficheros$ = this._http.get(`${this.apiUrl}/ficheros`)
+    this._http.get(`${this.apiUrl}/ficheros`).subscribe( (i:any) =>{
+      console.log(i)
+      this.ficheros = i.map(j => ({filename:j})) 
+    })
   }
-  ngOnInit() {}
+  ngOnInit() { }
 }

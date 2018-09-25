@@ -1,10 +1,11 @@
+
 <div class="row">
     <div class="col">
-        <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block" (click)="uploadContent()">Subir
-            contenidos</button>
+        <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block" (click)="uploadContent()">Subir contenidos
+        </button>
         <pre *ngIf="contenido!=null">{{contenido | json}}</pre>
-        <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block" (click)="loadData(contenido.file.filename, 'text')">Bajar
-            contenido</button>
+        <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block" (click)="loadData(contenido.file, 'text')">Bajar contenido
+        </button>
         <pre *ngIf="datosFichero!=null">
           {{datosFichero}}
         </pre>
@@ -20,25 +21,45 @@
             <pre *ngIf="filename!=null">{{filename | json}}</pre>
             <p>multiple</p>
             <input type="file" id="f1" multiple accept="image/*" (change)="uploadDataMultiple($event)">
-            <pre *ngIf="files!=null">{{files | json}}</pre>
+            <!-- <pre *ngIf="files!=null">
+                {{files  | json}}
+               
+            </pre> -->
+            <table *ngIf="files!=null" class="table">
+                <tr *ngFor="let file of files.file">
+                    <td>{{file.filename}}</td>
+                    <td>
+                        <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block" (click)="loadData(file, 'blob')">Bajar imagen
+                        </button>
+                    </td>
+                    <td>
+                        <img *ngIf="file.img" width="200"  [src]="file.img" alt="imagen en base 64" />
+                    </td>
+                </tr>
+            </table>
         </form>
     </div>
 </div>
-<button type="button" name="" id="" class="btn btn-primary btn-lg btn-block" (click)="loadData('file-1537266142317.png', 'blob')">Bajar
-    imagen</button>
-<img *ngIf="base64data" [src]="base64data" alt="Red dot" />
 
-<ng-container *ngFor="let o of imagenes">
-    <img width=156 [src]="o" alt="Red dot" />
-</ng-container>
-<button type="button" name="" id="" class="btn btn-primary btn-lg btn-block" 
-(click)="getFicheros()">
-        ver Ficheros</button>
-<ul>
-    <li *ngFor="let o of ficheros$ | async">
-            {{o}}
-    </li>
-</ul>
-<!-- <div style="position:absolute;left:0;top:0; width:100%; height: 100%;background: green">
-        aaa
-</div> -->
+
+
+<div class="row my-4" *ngFor="let o of imagenes">
+    <div class="col ">
+        <img  [src]="o" alt="Red dot" />
+    </div>
+</div>
+
+<button  type="button" name="" id="" class="my-4 btn btn-primary btn-lg btn-block" (click)="getFicheros()">
+    ver Ficheros</button>
+<table class="table">
+    <tr *ngFor="let file of ficheros">
+        <td>
+                {{file.filename}}
+        </td>
+        <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block" (click)="loadData(file, 'blob')">Bajar imagen
+            </button>
+        <td>
+             <img *ngIf="file.img" width="200"  [src]="file.img" alt="imagen en base 64" />
+        </td>
+    </tr>
+</table>
