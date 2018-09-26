@@ -28,7 +28,7 @@ import { environment } from "../environments/environment"
 import { S2Service } from "./s2.service"
 import { ErrorsHandler } from "./errors-handler";
 import { PadreComponent } from './padre/padre.component';
-import { HijoComponent } from './hijo/hijo.component'
+import { HijoComponent } from './hijo/hijo.component';
 
 @NgModule({
   declarations: [

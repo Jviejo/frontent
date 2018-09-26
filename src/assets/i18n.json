@@ -1,10 +1,10 @@
 {
     "es": [
-      { "id": "id1", "texto": "id1 es" },
-      { "id": "id2", "texto": "id2 es" }
+      { "id": "id1", "texto": "codigo es" },
+      { "id": "id2", "texto": "nombre es" }
     ],
     "va": [
-      { "id": "id1", "texto": "id1 va" },
-      { "id": "id2", "texto": "id2 va" }
+      { "id": "id1", "texto": "codigo va" },
+      { "id": "id2", "texto": "nombre va" }
     ]
 }

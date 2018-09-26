@@ -21,15 +21,12 @@
             <pre *ngIf="filename!=null">{{filename | json}}</pre>
             <p>multiple</p>
             <input type="file" id="f1" multiple accept="image/*" (change)="uploadDataMultiple($event)">
-            <!-- <pre *ngIf="files!=null">
-                {{files  | json}}
-               
-            </pre> -->
+          
             <table *ngIf="files!=null" class="table">
                 <tr *ngFor="let file of files.file">
                     <td>{{file.filename}}</td>
                     <td>
-                        <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block" (click)="loadData(file, 'blob')">Bajar imagen
+                        <button type="button" class="btn btn-primary btn-lg btn-block" (click)="loadData(file, 'blob')">Bajar imagen
                         </button>
                     </td>
                     <td>

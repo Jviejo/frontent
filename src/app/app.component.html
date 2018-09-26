@@ -2,12 +2,13 @@
   <div class="row">
     <div class="col">
       <h2>Alicante Front End</h2>
+      <p><a href="https://github.com/Jviejo?tab=repositories">Repositorio</a></p>
     </div>
   </div>
-  <div *ngIf="_servicio.error" >
-    <div class="col" class="row alert alert-danger alert-dismissible fade show" role="alert">
-      {{_servicio.error}}
-    </div>
+  <div *ngIf="ifError" >
+      <ngb-alert type="danger" (click)="clearError()" [dismissible]="true">
+         {{error}}
+        </ngb-alert>
   </div>
   <div class="row">
     <div class="col-3">

@@ -20,6 +20,8 @@ export class ServicioService {
     this._idioma = idioma
     this.idiomaChange.next(this._idioma)
   }
+  errorSubject: Subject<string> = new Subject<string>()
+  
   idiomaChange: Subject<string> = new Subject<string>()
   i18n = {}
 
@@ -84,7 +86,7 @@ export class ServicioService {
       responseType: "text",
       observe: "response",
     })
-  }
+  } 
   reloj() {
     return interval(1000).pipe(map(i => new Date()))
   }

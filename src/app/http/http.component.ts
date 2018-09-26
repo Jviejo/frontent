@@ -42,7 +42,7 @@ export class HttpComponent implements OnInit {
 
   uploadContent() {
     var formData = new FormData()
-    var parte = ['<a id="a"><b id="b">hey!</b></a>'] // an array consisting of a single DOMString
+    var parte = ['<a id="a"><b id="b">hey!</b></a>', '<a id="a"><b id="b">hey!</b></a>']
     var myBlob = new Blob(parte, { type: "text/html" }) // the blob
     formData.append("file", myBlob, "contenido.html")
     this._http.post(`${this.apiUrl}/upload`, formData).subscribe((i: any) => {
@@ -56,12 +56,9 @@ export class HttpComponent implements OnInit {
     var file = $event.target.files[0]
     // creamos el formdata
     var formData = new FormData()
-    //var aFileParts = ['<a id="a"><b id="b">hey!</b></a>']; // an array consisting of a single DOMString
-    //var oMyBlob = new Blob(aFileParts, {type : 'text/html'}); // the blob
     formData.append("file", file, file.name)
     this._http.post(`${this.apiUrl}/upload`, formData).subscribe((i: any) => {
       console.log(i)
-
       this.filename = i
     })
   }

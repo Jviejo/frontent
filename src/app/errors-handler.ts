@@ -3,19 +3,13 @@ import { ServicioService } from "./servicio.service";
 
 @Injectable()
 export class ErrorsHandler implements ErrorHandler {
-  
-  /**
-   *
-   */
   constructor(private injector: Injector) {
-    
-    
   }
   handleError(error: any): void {
-    let servicio = this.injector.get(ServicioService);
-    servicio.error = error;
-    console.log(error, error.code)
-    // throw error
+    const servicio = this.injector.get(ServicioService);
+    servicio.errorSubject.next(error.stack);
    
+    console.log(error)
+    // throw error
   }
 }

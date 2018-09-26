@@ -1,4 +1,4 @@
-import { Component, HostListener } from "@angular/core"
+import { Component, HostListener, ChangeDetectorRef } from "@angular/core"
 import { Title } from "@angular/platform-browser"
 import { ServicioService } from "./servicio.service"
 import {
@@ -12,6 +12,7 @@ import {
   timer,
   merge,
   interval,
+  Subscription,
 } from "rxjs"
 import {
   map,
@@ -45,14 +46,23 @@ export class AppComponent {
   http2$: any
   intervalo$: Observable<{}[]>
   reloj$: Observable<Date>
+  error: string;
+  ifError = false;
+  subcription: Subscription;
 
-  @HostListener("document:keyup", ["$event"])
-  clickout($event) {
-    this.eventos$.next($event)
-    console.log("click", $event)
+
+  clearError() {
+    this.error = null;
+    this.ifError = false;
+    this.changeDetectorRef.detectChanges();
+    console.log("clear")
   }
-
-  constructor(public _servicio: ServicioService) {
-   
+  constructor(public _servicio: ServicioService, private changeDetectorRef: ChangeDetectorRef) {
+    this.subcription = this._servicio.errorSubject.subscribe(i => {
+      console.log("aqui llega", i)
+      this.error = i;
+      this.ifError = true;
+      this.changeDetectorRef.detectChanges();
+    })
   }
 }

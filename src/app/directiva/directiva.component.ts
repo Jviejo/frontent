@@ -8,6 +8,7 @@ import { ServicioService } from "../servicio.service"
   styleUrls: ["./directiva.component.css"],
 })
 export class DirectivaComponent implements OnInit {
+
   constructor(public _servicio: ServicioService) {}
 
   ngOnInit() {}
