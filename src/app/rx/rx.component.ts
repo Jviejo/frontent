@@ -26,12 +26,13 @@ export class RxComponent implements OnInit {
     this.intentos$ = interval(1000).pipe(
       map(valor => {
         if (valor > 2) {
-          throw 'error';
+          throw 'se ha producido un error';
         } else {
           return valor;
         }
       }),
-     retry(2),
+      retry(2),
+      //catchError(i => of(i)),
       scan((acc: any, curr: any) => {
         acc.push(curr)
         return acc
