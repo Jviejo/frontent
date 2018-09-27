@@ -29,7 +29,8 @@ import { S2Service } from "./s2.service"
 import { ErrorsHandler } from "./errors-handler";
 import { PadreComponent } from './padre/padre.component';
 import { HijoComponent } from './hijo/hijo.component';
-
+import { FormularioComponent } from './formulario/formulario.component';
+import { ReactiveFormsModule} from '@angular/forms'
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,8 +46,9 @@ import { HijoComponent } from './hijo/hijo.component';
     HttpbasicoComponent,
     PadreComponent,
     HijoComponent,
+    FormularioComponent,
   ],
-  imports: [BrowserModule, NgbModule, HttpClientModule],
+  imports: [BrowserModule, NgbModule, HttpClientModule, ReactiveFormsModule],
   providers: [
     {
       provide: ErrorHandler,

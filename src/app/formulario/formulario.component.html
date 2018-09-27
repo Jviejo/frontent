@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col">
+    <form [formGroup]="formulario" (submit)="submit()">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" [ngClass]="{ 'is-invalid': formulario.controls.nombre.invalid && formulario.controls.nombre.dirty }" name="nombre"
+          id="nombre" formControlName="nombre" aria-describedby="helpNombre" placeholder="Nombre">
+        <small id="helpNombre" class="form-text text-muted">Hay que introducir el nombre</small>
+        <div *ngIf="formulario.controls.nombre.invalid && formulario.controls.nombre.dirty" class="invalid-feedback">
+          <div *ngIf="formulario.controls['nombre'].errors.required">Nombre requerido</div>
+          <div *ngIf="formulario.controls['nombre'].errors.maxlength">Longitud maxima {{formulario.controls['nombre'].errors.maxlength.requiredLength}}</div>
+          <div *ngIf="formulario.controls['nombre'].errors.custom">Custom codigo:{{formulario.controls['nombre'].errors.custom.codigo}} - {{formulario.controls['nombre'].errors.custom.descripcion}}</div>
+        </div>
+        <pre>status:{{formulario.controls.nombre.status}}
+valid:{{formulario.controls.nombre.valid}}
+invalid:{{formulario.controls.nombre.invalid}}
+pending:{{formulario.controls.nombre.pending}}
+disabled:{{formulario.controls.nombre.disabled}}
+enabled:{{formulario.controls.nombre.enabled}}
+errors:{{formulario.controls.nombre.errors | json}}
+pristine:{{formulario.controls.nombre.pristine}}
+dirty:{{formulario.controls.nombre.dirty}}
+touched:{{formulario.controls.nombre.touched}}
+untouched:{{formulario.controls.nombre.untouched}}
+      </pre>
+      </div>
+      <div class="form-group">
+        <label for="fecha">Dia</label>
+        <input type="date" class="form-control" name="dia" id="dia" formControlName="dia" aria-describedby="helpdia"
+          placeholder="dia">
+        <small id="helpdia" class="form-text text-muted">dia de entrada</small>
+      </div>
+      <div class="form-group">
+        <label for="fecha">Fecha y Hora</label>
+        <input type="datetime-local" class="form-control" name="fecha" id="fecha" formControlName="fecha"
+          aria-describedby="helpFecha" placeholder="Fecha">
+        <small id="helpFecha" class="form-text text-muted">Fecha de entrada</small>
+      </div>
+      <div class="form-group">
+        <label for="importe">importe</label>
+        <input type="number" class="form-control" name="importe" [ngClass]="{ 'is-invalid': formulario.controls.importe.errors }"
+          id="importe" formControlName="importe" aria-describedby="helpimporte" placeholder="importe">
+        <small id="helpimporte" class="form-text text-muted">importe de entrada</small>
+        <div *ngIf="formulario.controls['importe'].errors" class="invalid-feedback">
+          <div *ngIf="formulario.controls['importe'].errors.required">importe</div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <button type="button" name="" id="" class="btn btn-primary" (click)="setImporte(122)">Patch form data</button>
+    <pre>{{formulario.valueChanges | async | json}}
+      </pre>
+      <pre>{{formulario.controls.nombre.errors | json}}</pre>
+      <pre>invalid:{{formulario.invalid | json}}</pre>
+  </div>
+</div>

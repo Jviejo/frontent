@@ -8,8 +8,5 @@ export class ErrorsHandler implements ErrorHandler {
   handleError(error: any): void {
     const servicio = this.injector.get(ServicioService);
     servicio.errorSubject.next(error.stack);
-   
-    console.log(error)
-    // throw error
   }
 }

@@ -14,7 +14,8 @@
     <div class="col-3">
       <h3>Sesión 1</h3>
       <ul class="list-group" style="cursor:pointer">
-        <li class="list-group-item" (click)="opcion = 'tabla'">Tabla</li>
+          
+          <li class="list-group-item" (click)="opcion = 'tabla'">Tabla</li>
         <li class="list-group-item" (click)="opcion = 'padre'">Padre/Hijo</li>
         <li class="list-group-item" (click)="opcion = 'servicio'">Servicio</li>
         <li class="list-group-item" (click)="opcion = 'directiva'">Directiva</li>
@@ -22,6 +23,7 @@
         <li class="list-group-item" (click)="opcion = 'httpbasico'">Http</li>
         <li class="list-group-item" (click)="opcion = 'http'">Http upload</li>
         <li class="list-group-item" (click)="opcion = 'errores'">Errores</li>
+        <li class="list-group-item" (click)="opcion = 'form'">Formulario</li>
       </ul>
     </div>
     <div class="col-9">
@@ -33,6 +35,7 @@
       <app-http *ngIf="opcion =='http'"></app-http>
       <app-httpbasico *ngIf="opcion =='httpbasico'"></app-httpbasico>
       <app-errores *ngIf="opcion =='errores'"></app-errores>
+      <app-formulario *ngIf="opcion =='form'"></app-formulario>
 
       <!-- <div class="row my-3">
     <button *ngIf="mode=='card'" (click)="this.mode = 'table'" type="button" name="" id="" class="col-3 btn btn-primary btn-lg btn-block">Table</button>
