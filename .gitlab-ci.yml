@@ -32,5 +32,5 @@ deploy-app:
     - docker pull ${IMAGE_HAPROXY_CLI}
     - docker run --rm -v `pwd`/dist/front-end:/dist ${IMAGE_CDN_CLI}
         upload --host frontend-ng-test.nextagilesoft.com --directory /dist -c http://192.168.1.8:7000
-    - docker run --rm ${IMAGE_HAPROXY_CLI} backend add --backend-url=$BACKEND_URL --host=frontend-ng-test.nextagilesoft.com \
+    - docker run --rm ${IMAGE_HAPROXY_CLI} backend add --backend-url=$BACKEND_URL --host=frontend-ng-test.nextagilesoft.com
       --frontend=https -a=192.168.1.8:9900 
