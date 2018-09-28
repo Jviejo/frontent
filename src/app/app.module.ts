@@ -91,6 +91,6 @@ import { FormInputComponent } from './form-input/form-input.component'
 })
 export class AppModule {
   constructor(private _title: Title) {
-    this._title.setTitle("TITULO" + environment.api)
+    this._title.setTitle("TITULO." + environment.api)
   }
 }
