@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { timer } from 'rxjs';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-form-lista',
@@ -10,7 +11,8 @@ import { timer } from 'rxjs';
 export class FormListaComponent implements OnInit {
   @Input() grupo: FormGroup
   @Input() titulo: string
-  constructor(private _fb: FormBuilder) { }
+  lockedWindow: any;
+  constructor(private _fb: FormBuilder, private modalService: NgbModal) { }
   remove(indice) {
     (this.grupo.controls.lista as FormArray).removeAt(indice);
   }
@@ -19,6 +21,15 @@ export class FormListaComponent implements OnInit {
       "id": "",
       "nombre": ""
     })
+  }
+  open(content, indice) {
+    this.lockedWindow = this.modalService.open(content, { centered: true })
+    this.lockedWindow.result.then((result) => {
+      console.log(`Closed with: ${result}`);
+      this.remove(indice);
+    }, (reason) => {
+      console.log(`Se cancela: ${reason}`);
+    });
   }
   add() {
     const arr = this.grupo.controls.lista as FormArray;
