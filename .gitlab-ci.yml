@@ -1,13 +1,39 @@
 stages:
+  - build
   - deploy
 
-variables:
-  IMAGE_CLI: docker.nextagilesoft.com/saas2/cli:1.0
+build-app:
+  image: node:10.11-alpine
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+    - node_modules/
+  tags:
+    - docker
+  stage: build
+  script:
+    - npm i
+    - npm run build --prod
+  artifacts:
+    paths:
+      - dist/front-end
+    expire_in: 1 hour
 
 deploy-app:
+  stage: deploy
   tags:
     - bare
-  stage: deploy
+  variables:
+    IMAGE_CDN_CLI: "$CI_REGISTRY/gt/static-fs/cli:latest"
+    IMAGE_HAPROXY_CLI: "$CI_REGISTRY/saas2/haproxy-letsencrypt:latest"
+    HAPROXY_BACKEND: "http://192.168.1.8:6300"
+    CDN_BACKEND: "http://192.168.1.8:7000"
+    APP_HOST: "frontend-curso.nextagilesoft.com"
   script:
-    - docker pull ${IMAGE_CLI}
-    - docker run -v `pwd`/app.yaml:/app.yaml --rm ${IMAGE_CLI} deploy --env=prod --app=/app.yaml
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker pull ${IMAGE_CDN_CLI}
+    - docker pull ${IMAGE_HAPROXY_CLI}
+    - docker run --rm -v `pwd`/dist/front-end:/dist ${IMAGE_CDN_CLI}
+        upload --host ${APP_HOST} --directory /dist -c ${CDN_BACKEND}
+    - docker run --rm ${IMAGE_HAPROXY_CLI} backend add --backend-url=${HAPROXY_BACKEND} --host=${APP_HOST}
+      --frontend=https -a=${HAPROXY_BACKEND}

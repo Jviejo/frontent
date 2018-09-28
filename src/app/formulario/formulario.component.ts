@@ -13,8 +13,11 @@ export class FormularioComponent implements OnInit {
   formulario: FormGroup;
   constructor(private _fb: FormBuilder) {
     this.formulario = new FormGroup({
-      "nombre": new FormControl("", [Validators.required, Validators.maxLength(10), this.customValidator],
-        this.nombreValidatorAsync.bind(this)),
+      "nif": new FormControl(""),
+      "provincia": new FormControl("3"),
+      "check": new FormControl(true),
+      "radio": new FormControl('3'),
+      "nombre": new FormControl("", [Validators.required, Validators.maxLength(10), this.customValidator]),
       "dia": new FormControl(moment().format("YYYY-MM-DD")),
       "fecha": new FormControl(moment().format("YYYY-MM-DDTHH:mm"))
     })
@@ -99,8 +102,8 @@ export class FormularioComponent implements OnInit {
       importe: 888.88,
       nombre: "NUEVO NOMBRE"
     })
-    // se marca el control como modificado
-    this.formulario.controls.nombre.markAsDirty()
+    this.formulario.controls.nombre.markAsDirty();
+    this.formulario.controls.importe.markAsDirty();
   }
   ngOnInit() {
   }

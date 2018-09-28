@@ -1,0 +1,8 @@
+<div [formGroup]="grupo">
+  <h3>{{titulo}}</h3>
+  <app-form-input [debug]="false" [control]="grupo.controls.nif" titulo="Nif" descripcion="nif" id="nuevo" placeHolder="placeholder">
+  </app-form-input>
+  <app-form-input [debug]="false" [control]="grupo.controls.nombre" titulo="Nombre" descripcion="NOmbreº" id="nuevo"
+    placeHolder="placeholder">
+  </app-form-input>
+</div>

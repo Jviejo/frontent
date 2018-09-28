@@ -24,6 +24,7 @@
         <li class="list-group-item" (click)="opcion = 'http'">Http upload</li>
         <li class="list-group-item" (click)="opcion = 'errores'">Errores</li>
         <li class="list-group-item" (click)="opcion = 'form'">Formulario</li>
+        <li class="list-group-item" (click)="opcion = 'formarray'">Formulario Array</li>
       </ul>
     </div>
     <div class="col-9">
@@ -36,6 +37,7 @@
       <app-httpbasico *ngIf="opcion =='httpbasico'"></app-httpbasico>
       <app-errores *ngIf="opcion =='errores'"></app-errores>
       <app-formulario *ngIf="opcion =='form'"></app-formulario>
+      <app-form-array *ngIf="opcion =='formarray'"></app-form-array>
 
       <!-- <div class="row my-3">
     <button *ngIf="mode=='card'" (click)="this.mode = 'table'" type="button" name="" id="" class="col-3 btn btn-primary btn-lg btn-block">Table</button>

@@ -1,6 +1,3 @@
-app: frontend
-company: nextagilesoft
-
 config: {}
 
 dependencies: {}
@@ -14,8 +11,6 @@ handlers:
 environments:
   - name: prod
     domain: frontend-ng.nextagilesoft.com
-    repository: git@gitlab-ssh.nextagilesoft.com:jviejo/frontend.git#master
+    repository: git@gitlab.nextagilesoft.com:jviejo/frontend.git#master
     type: Kubernetes
     cluster: animal
-    config: {}
-    env_variables: []

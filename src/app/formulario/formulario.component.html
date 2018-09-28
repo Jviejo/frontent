@@ -17,6 +17,43 @@ dirty:{{formulario.dirty}}
     </div>
 
     <form [formGroup]="formulario" (submit)="submit()">
+      <app-form-input [debug]="false" [control]="formulario.controls.nif" titulo="Nif" descripcion="descripcion" id="nuevo"
+        placeHolder="placeholder">
+      </app-form-input>
+
+      <div class="form-group">
+        <label for="nombre">Provincia</label>
+        <select  class="form-control"  formControlName="provincia">
+          <option [value]="r.id" *ngFor="let r of [{id:2,nombre:'dos'},{id:1,nombre:'uno'}, {id:3,nombre:'tres'}]">{{r.nombre}}</option>
+        </select>
+      </div>
+      <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox"  formControlName="check">
+            Esta es la opcion
+          </label>
+      </div>
+  
+
+      <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" formControlName="radio" id="exampleRadios1" value="1" checked>
+            opcion 1
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" formControlName="radio" id="exampleRadios2" value="2">
+            opcion 2
+          </label>
+        </div>
+        <div class="form-check disabled">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" formControlName="radio" id="exampleRadios3" value="3" disabled>
+            opcion 3  
+          </label>
+        </div>
+
       <div class="form-group">
         <label for="nombre">Nombre</label>
         <input type="text" class="form-control" [ngClass]="{ 'is-invalid': formulario.controls.nombre.invalid && formulario.controls.nombre.dirty }"
@@ -84,6 +121,7 @@ untouched:{{formulario.controls.nombre.untouched}}
     <pre>{{formulario.valueChanges | async | json}}
         invalid:{{formulario.invalid | json}}
       </pre>
-
+    <pre>Errores:{{formulario.controls.nombre.errors | json}}</pre>
+    <pre>invalid:{{formulario.invalid | json}}</pre>
   </div>
 </div>

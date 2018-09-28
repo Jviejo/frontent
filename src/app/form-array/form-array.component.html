@@ -1,0 +1,19 @@
+<form [formGroup]="form">
+  <app-form-grupo titulo="registro" [grupo]="form.get('grupo')"></app-form-grupo>
+  <app-form-lista titulo="lista 1" [grupo]="form.get('grupo1')"></app-form-lista>
+  <app-form-lista titulo="lista 2" [grupo]="form.get('grupo2')"></app-form-lista>
+  
+</form>
+<pre>status:{{form.status}}
+    valid:{{form.valid}}
+    invalid:{{form.invalid}}
+    pending:{{form.pending}}
+    disabled:{{form.disabled}}
+    enabled:{{form.enabled}}
+    errors:{{form.errors | json}}
+    pristine:{{form.pristine}}
+    dirty:{{form.dirty}}
+    touched:{{form.touched}}
+    untouched:{{form.untouched}}
+</pre>
+<pre>{{this.form.valueChanges | async | json}}</pre>
