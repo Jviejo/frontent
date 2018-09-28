@@ -1,0 +1,29 @@
+<div [formGroup]="grupo">
+  <div class="row">
+    <div class="col">
+      <h3>{{titulo}}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col"><button type="button" name="" id="" (click)="add()" class="btn btn-primary">Add</button></div>
+  </div>
+  <div class="row">
+    <div class="col">
+    </div>
+    <ng-container formArrayName="lista">
+      <table class="table" *ngFor="let elemento of grupo.controls.lista.controls; let i = index">
+        <tr [formGroupName]="i">
+          <td>
+            <app-form-input [debug]="true" [control]="grupo.controls.lista.controls[i].controls.id" placeHolder="placeholder">
+            </app-form-input>
+          </td>
+          <td>
+            <app-form-input [debug]="false" [control]="grupo.controls.lista.controls[i].controls.nombre" placeHolder="placeholder">
+            </app-form-input>
+          </td>
+          <td> <button type="button" name="" id="" (click)="remove(i)" class="btn btn-primary">Remove</button></td>
+        </tr>
+      </table>
+    </ng-container>
+  </div>
+</div>

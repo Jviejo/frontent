@@ -1,0 +1,18 @@
+<div class="form-group">
+    <label *ngIf="titulo" [for]="id" [title]="title ? descripcion : ''">{{titulo}}</label>
+    <input [formControl]="control" type="text" class="form-control" [id]="id" [placeholder]="placeHolder || ''">
+    <small *ngIf="descripcion && !title" [id]="id+'small'" class="form-text text-muted">{{descripcion}}</small>
+<pre *ngIf="debug">status:{{control.status}}
+valid:{{control.valid}}
+invalid:{{control.invalid}}
+pending:{{control.pending}}
+disabled:{{control.disabled}}
+enabled:{{control.enabled}}
+errors:{{control.errors | json}}
+pristine:{{control.pristine}}
+dirty:{{control.dirty}}
+touched:{{control.touched}}
+untouched:{{control.untouched}}
+valor:{{control.value}}
+</pre>
+</div>

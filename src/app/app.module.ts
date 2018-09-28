@@ -30,7 +30,11 @@ import { ErrorsHandler } from "./errors-handler";
 import { PadreComponent } from './padre/padre.component';
 import { HijoComponent } from './hijo/hijo.component';
 import { FormularioComponent } from './formulario/formulario.component';
-import { ReactiveFormsModule} from '@angular/forms'
+import { ReactiveFormsModule} from '@angular/forms';
+import { FormArrayComponent } from './form-array/form-array.component';
+import { FormListaComponent } from './form-lista/form-lista.component';
+import { FormGrupoComponent } from './form-grupo/form-grupo.component';
+import { FormInputComponent } from './form-input/form-input.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,8 +51,12 @@ import { ReactiveFormsModule} from '@angular/forms'
     PadreComponent,
     HijoComponent,
     FormularioComponent,
+    FormArrayComponent,
+    FormListaComponent,
+    FormGrupoComponent,
+    FormInputComponent,
   ],
-  imports: [BrowserModule, NgbModule, HttpClientModule, ReactiveFormsModule],
+  imports: [BrowserModule, NgbModule, HttpClientModule, ReactiveFormsModule, NgbModule.forRoot()],
   providers: [
     {
       provide: ErrorHandler,
