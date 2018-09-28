@@ -34,6 +34,6 @@ deploy-app:
     - docker pull ${IMAGE_CDN_CLI}
     - docker pull ${IMAGE_HAPROXY_CLI}
     - docker run --rm -v `pwd`/dist/front-end:/dist ${IMAGE_CDN_CLI}
-        upload --host ${APP_HOST} --directory /dist -c ${CDN_BACKEND}
+        upload --host ${APP_HOST} --directory /dist -m ${CDN_BACKEND}
     - docker run --rm ${IMAGE_HAPROXY_CLI} backend add --backend-url=${HAPROXY_BACKEND} --host=${APP_HOST}
       --frontend=https -a=${HAPROXY_BACKEND}
