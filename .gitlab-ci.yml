@@ -24,10 +24,10 @@ deploy-app:
   tags:
     - bare
   variables:
-    IMAGE_CDN_CLI: "$CI_REGISTRY/gt/static-fs/cli:latest"
+    IMAGE_CDN_CLI: "$CI_REGISTRY/saas2/cdn/cli:latest"
     IMAGE_HAPROXY_CLI: "$CI_REGISTRY/saas2/haproxy-letsencrypt:latest"
     HAPROXY_BACKEND: "http://192.168.1.8:6300"
-    CDN_BACKEND: "http://192.168.1.8:7000"
+    CDN_BACKEND: "http://192.168.1.8:7001"
     APP_HOST: "frontend-curso.nextagilesoft.com"
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY

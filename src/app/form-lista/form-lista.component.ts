@@ -9,9 +9,9 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./form-lista.component.css']
 })
 export class FormListaComponent implements OnInit {
-  @Input() grupo: FormGroup
+  @Input() grupo: any
   @Input() titulo: string
-  
+
   lockedWindow: any;
   constructor(private _fb: FormBuilder, private modalService: NgbModal) { }
   remove(indice) {
