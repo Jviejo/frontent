@@ -10,15 +10,16 @@ build-app:
     - node_modules/
   tags:
     - docker
-  stage: deploy
+  stage: build
   script:
     - npm i
     - npm run build --prod
   artifacts:
-    path:
+    paths:
       - dist/front-end
 
 deploy-app:
+  stage: deploy
   tags:
     - bare
   script:
