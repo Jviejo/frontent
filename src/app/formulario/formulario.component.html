@@ -110,7 +110,8 @@ untouched:{{formulario.controls.nombre.untouched}}
       <div *ngIf="formulario.controls['importe'].errors.importe">el importe no puede ser 10</div>
     </div>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button class="btn btn-primary" type="submit" [disabled]="!formulario.valid">Submit</button>
+  
   </form>
 
 </div>
