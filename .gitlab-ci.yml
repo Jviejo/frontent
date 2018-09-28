@@ -17,6 +17,7 @@ build-app:
   artifacts:
     paths:
       - dist/front-end
+    expire_in: 1 hour
 
 deploy-app:
   stage: deploy
@@ -24,7 +25,12 @@ deploy-app:
     - bare
   variables:
     IMAGE_CDN_CLI: "$CI_REGISTRY/gt/static-fs/cli:latest"
+    IMAGE_HAPROXY_CLI: "$CI_REGISTRY/saas2/haproxy-letsencrypt:latest"
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
-    - docker run -v `pwd`/dist/front-end:/dist ${IMAGE_CDN_CLI}
+    - docker pull ${IMAGE_CDN_CLI}
+    - docker pull ${IMAGE_HAPROXY_CLI}
+    - docker run --rm -v `pwd`/dist/front-end:/dist ${IMAGE_CDN_CLI}
         upload --host frontend-ng-test.nextagilesoft.com --directory /dist -c http://192.168.1.8:7000
+    - docker run --rm ${IMAGE_HAPROXY_CLI} backend add --backend-url=$BACKEND_URL --host=frontend-ng-test.nextagilesoft.com \
+      --frontend=https -a=192.168.1.8:9900 
