@@ -22,5 +22,9 @@ deploy-app:
   stage: deploy
   tags:
     - bare
+  variables:
+    IMAGE_CDN_CLI: "$CI_REGISTRY/gt/static-fs/cli:latest"
   script:
-    - ls -l dist
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker run -v `pwd`/dist/front-end:/dist ${IMAGE_CDN_CLI}
+        upload --host frontend-ng-test.nextagilesoft.com --directory /dist -c http://192.168.1.8:7000
