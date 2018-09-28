@@ -30,7 +30,7 @@ import { ErrorsHandler } from "./errors-handler";
 import { PadreComponent } from './padre/padre.component';
 import { HijoComponent } from './hijo/hijo.component';
 import { FormularioComponent } from './formulario/formulario.component';
-import { ReactiveFormsModule} from '@angular/forms'
+import { ReactiveFormsModule, NG_VALIDATORS} from '@angular/forms'
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,7 +77,7 @@ import { ReactiveFormsModule} from '@angular/forms'
         },
       deps: [ServicioService],
       multi: true,
-    },
+    }
   ],
   bootstrap: [AppComponent],
 })
