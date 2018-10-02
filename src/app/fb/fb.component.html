@@ -1,0 +1,22 @@
+<form [formGroup]="form">
+  <input formControlName="id" class="form-control" type="text">
+  <button (click)="add()"> Add</button>
+  <div formArrayName="array">
+    <div *ngFor="let linea of form.get('array').controls; let i=index">
+      <div class="row" [formGroupName]="i">
+      <div class="col">
+          <input formControlName="id" class="form-control" type="text">
+        </div>
+      <div class="col">
+          <input formControlName="nombre" class="form-control" type="text">
+        </div>
+        <div class="col">
+          <button (click)="remove(i)">Remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<pre>{{form.value | json}}
+    {{form.valueChanges | async | json}}
+</pre>

@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./formulario.component.css']
 })
 export class FormularioComponent implements OnInit {
+  // definimos el formulario como un grupo
   formulario: FormGroup;
   constructor(private _fb: FormBuilder) {
     this.formulario = new FormGroup({
@@ -21,11 +22,9 @@ export class FormularioComponent implements OnInit {
       "dia": new FormControl(moment().format("YYYY-MM-DD")),
       "fecha": new FormControl(moment().format("YYYY-MM-DDTHH:mm"))
     })
-
+    // añadimos un control al formulario
     this.formulario.addControl("importe", new FormControl(988.121));
     this.formulario.controls["importe"].setValidators(Validators.required)
-
-
     this.formulario.setValidators([this.formValidator,
     (form: FormGroup) => {
       if (form.controls.nombre.value == 'AAA'
@@ -40,14 +39,14 @@ export class FormularioComponent implements OnInit {
       return null;
     }
     ]);
-
+  }
     // this.formulario = this._fb.group({
     //   nombre: ["pepe", [Validators.required, Validators.maxLength(10)]],
     //   dia: moment().format("YYYY-MM-DD"),
     //   fecha: moment().format("YYYY-MM-DDTHH:mm"),
     //   importe: [988.121, Validators.required]
     // })
-  }
+  
   submit() {
 
   }

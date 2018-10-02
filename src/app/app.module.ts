@@ -34,7 +34,9 @@ import { ReactiveFormsModule} from '@angular/forms';
 import { FormArrayComponent } from './form-array/form-array.component';
 import { FormListaComponent } from './form-lista/form-lista.component';
 import { FormGrupoComponent } from './form-grupo/form-grupo.component';
-import { FormInputComponent } from './form-input/form-input.component'
+import { FormInputComponent } from './form-input/form-input.component';
+import { FormsimpleComponent } from './formsimple/formsimple.component';
+import { FbComponent } from './fb/fb.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +57,8 @@ import { FormInputComponent } from './form-input/form-input.component'
     FormListaComponent,
     FormGrupoComponent,
     FormInputComponent,
+    FormsimpleComponent,
+    FbComponent,
   ],
   imports: [BrowserModule, NgbModule, HttpClientModule, ReactiveFormsModule, NgbModule.forRoot()],
   providers: [

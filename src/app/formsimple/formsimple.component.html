@@ -1,0 +1,76 @@
+<input class="form-control" [ngClass]="{'is-invalid': control1.invalid}" required type="text" [formControl]="control1">
+<pre>
+ESTADO DE CONTROL1
+pristine={{control1.pristine}}
+dirty={{control1.dirty}}
+status={{control1.status}}
+valid={{control1.valid}}
+invalid={{control1.invalid}}
+error={{control1.errors | json}}
+pending:{{control1.pending}}
+</pre>
+<input class="form-control" type="text" [formControl]="control2">
+<input class="btn btn-primary" type="submit" [disabled]="grupo.invalid" value="ENVIAR">
+<pre>
+ESTADO DE CONTROL2
+pristine={{control2.pristine}}
+dirty={{control2.dirty}}
+status={{control2.status}}
+valid={{control2.valid}}
+invalid={{control2.invalid}}
+error={{control2.errors | json}}
+pending:{{control2.pending}}
+</pre>
+<pre>
+ESTADO DEL FORMULARIO  
+pristine={{grupo.pristine}}
+dirty={{grupo.dirty}}
+status={{grupo.status}}
+valid={{grupo.valid}}
+invalid={{grupo.invalid}}
+error={{grupo.errors | json}}
+pending:{{grupo.pending}}
+</pre>
+
+<input class="btn btn-primary" type="button" (click)="add()" value="Add">
+<div class="row" *ngFor="let control of this.formArray.controls; let i=index">
+  <div class="col">
+    <input class="form-control" [ngClass]="{'is-invalid': control.invalid}" type="text" [formControl]="control">
+  </div>
+  <div class="col">
+    <input class="btn btn-primary" type="button" (click)="remove(i)" value="Remove">
+  </div>
+</div>
+<div *ngIf="formArray.invalid" class="alert alert-danger">
+  {{formArray.errors | json}}
+</div>
+<pre>
+    ESTADO DEL ARRAY  
+    pristine={{formArray.pristine}}
+    dirty={{formArray.dirty}}
+    status={{formArray.status}}
+    valid={{formArray.valid}}
+    invalid={{formArray.invalid}}
+    error={{formArray.errors | json}}
+    pending:{{formArray.pending}}
+</pre>
+
+<div class="my-4">
+  <input class="btn btn-primary" type="button" (click)="add2()" value="Add">
+  <div class="row" *ngFor="let grupo of formArray2.controls; let i=index">
+    <div class="col">
+      <input class="form-control" type="text" [formControl]="grupo.get('id')">
+    </div>
+    <div class="col">
+      <input class="form-control" type="text" [formControl]="grupo.get('nombre')">
+    </div>
+    <div class="col">
+      <input class="btn btn-primary" type="button" (click)="remove2(i)" value="Remove">
+    </div>
+  </div>
+  <pre>
+    {{formArray2.value | json}}
+    {{formArray2.valueChanges | async | json}}
+    {{formArray2.statusChanges | async | json}}
+  </pre>
+</div>

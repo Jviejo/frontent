@@ -23,6 +23,8 @@
         <li class="list-group-item" (click)="opcion = 'httpbasico'">Http</li>
         <li class="list-group-item" (click)="opcion = 'http'">Http upload</li>
         <li class="list-group-item" (click)="opcion = 'errores'">Errores</li>
+        <li class="list-group-item" (click)="opcion = 'formSimple'">Formulario Simple</li>
+        <li class="list-group-item" (click)="opcion = 'fb'">Formu Builder</li>
         <li class="list-group-item" (click)="opcion = 'form'">Formulario</li>
         <li class="list-group-item" (click)="opcion = 'formarray'">Formulario Array</li>
       </ul>
@@ -37,6 +39,8 @@
       <app-httpbasico *ngIf="opcion =='httpbasico'"></app-httpbasico>
       <app-errores *ngIf="opcion =='errores'"></app-errores>
       <app-formulario *ngIf="opcion =='form'"></app-formulario>
+      <app-fb *ngIf="opcion =='fb'"></app-fb>
+      <app-formsimple *ngIf="opcion =='formSimple'"></app-formsimple>
       <app-form-array *ngIf="opcion =='formarray'"></app-form-array>
 
       <!-- <div class="row my-3">
